@@ -1,0 +1,14 @@
+# Abaikan file notebook pribadi
+kb.ipynb
+
+# Folder cache dan checkpoint Jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# File sementara VSCode
+.vscode/
+*.code-workspace
+
+# File data
+*.csv
+*.xlsx
