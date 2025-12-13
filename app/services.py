@@ -6,12 +6,11 @@ from config import Config
 
 class LotteryPredictor:
     def __init__(self):
-        # Simpan state di memori (Cache)
         self.model = None
         self.feature_cols = None
         self.test_df = None
-        self.target_cols = None  # Cache nama kolom target
-        self.date_cache = ([], []) # Cache data dropdown
+        self.target_cols = None
+        self.date_cache = ([], [])
         self._load_resources()
 
     def _load_resources(self):
@@ -22,29 +21,28 @@ class LotteryPredictor:
             self.model = joblib.load(Config.MODEL_PATH)
             self.feature_cols = joblib.load(Config.FEATURES_PATH)
             
-            # Load Dataframe
-            df = pd.read_csv(Config.TEST_DATA_PATH, index_col=0)
-            df.index = pd.to_datetime(df.index)
-            self.test_df = df
+            test_df = pd.read_csv(Config.TEST_DATA_PATH, index_col=0)
+            test_df['data_source'] = 'Testing Data'
+            
+            train_df = pd.read_csv(Config.TRAIN_DATA_PATH, index_col=0)
+            train_df['data_source'] = 'Training Data'
 
-            # OPTIMASI 1: Pre-calculate Target Columns
-            # Biar gak perlu searching string 'num_' tiap kali prediksi
-            self.target_cols = [c for c in df.columns if 'num_' in c or 'target_' in c]
+            self.full_df = pd.concat([test_df, train_df])
+            self.full_df.index = pd.to_datetime(self.full_df.index)
 
-            # OPTIMASI 2: Pre-calculate Dropdown Data
-            # Biar gak sorting ulang tiap refresh halaman
-            dates = df.index.sort_values(ascending=False)
+            self.target_cols = [c for c in self.full_df.columns if 'num_' in c or 'target_' in c]
+
+            dates = self.full_df.index.sort_values(ascending=False)
             years = sorted(dates.year.unique(), reverse=True)
             valid_dates = [d.strftime('%Y-%m-%d') for d in dates]
             self.date_cache = (years, valid_dates)
             
-            print("✅ [Service] Resources loaded & cached.")
+            print("[Service] Resources loaded & cached.")
             
         except Exception as e:
-            print(f"❌ [Service] Error: {e}")
+            print(f"[Service] Error: {e}")
 
     def get_available_dates(self):
-        # Tinggal return data yang sudah dihitung di awal (Instant!)
         return self.date_cache
 
     def predict(self, date_str):
@@ -52,11 +50,11 @@ class LotteryPredictor:
         
         # Pandas lookup (Hash lookup) sangat cepat
         try:
-            row = self.test_df.loc[[date_str]]
+            row = self.full_df.loc[[date_str]]
         except KeyError:
             raise KeyError("Tanggal tidak ditemukan.")
 
-        # 1. Input Features
+        data_source = row['data_source'].values[0]
         X_input = row[self.feature_cols]
 
         # 2. Ground Truth (Pakai kolom yang sudah dicache)
@@ -76,4 +74,4 @@ class LotteryPredictor:
         # Tapi karena N=49 (kecil), argsort biasa sudah cukup cepat (-6 artinya ambil 6 terakhir)
         pred_balls = np.argsort(final_probs)[-6:][::-1] + 1
 
-        return sorted(pred_balls), sorted(true_balls)
+        return sorted(pred_balls), sorted(true_balls), data_source

@@ -1,0 +1,491 @@
+:root {
+    --primary-red: #e31a35;
+    --border-red: #9f2626;
+    --bright-red: #d10000;
+    --bg-white: #ffffff;
+    --ball-red: radial-gradient(circle at 30% 30%, #ff4d4d, #9f0808);
+    --ball-blue: radial-gradient(circle at 30% 30%, #4d79ff, #0d0f55);
+    --ball-green: radial-gradient(circle at 30% 30%, #5bff75, #0d550d);
+    --ball-purple: radial-gradient(circle at 30% 30%, #d45bff, #3d0d55);
+}
+
+body {
+    background-color: #f8f8f8;
+    font-family: 'Nunito Sans', sans-serif;
+    margin: 0;
+    opacity: 0;
+    animation: fadeInBody 0.8s ease-out forwards;
+}
+
+@keyframes fadeInBody {
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+i {
+    color: var(--primary-red);
+}
+
+.container h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 550;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.header {
+    background-color: var(--bg-white);
+    color: var(--primary-red);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    animation: slideDown 0.6s ease-out forwards;
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+    }
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.card {
+    background: var(--bg-white);
+    border-radius: 5px;
+    padding: 15px 40px 30px 40px;
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 25px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Animasi Card Berurutan */
+.card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.card-predict-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    color: black;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+/* --- Form --- */
+.date-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f8f8f8;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e31a35%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 10px auto;
+
+    border: 2px solid #e1e1e1;
+    border-radius: 50px;
+    /* Capsule shape */
+    padding: 12px 40px 12px 20px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+
+    cursor: pointer;
+    min-width: 110px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+select:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 4px 10px rgba(227, 26, 53, 0.15);
+    transform: translateY(-2px);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(227, 26, 53, 0.2);
+}
+
+
+button {
+    background-color: var(--primary-red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: #d10000;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(209, 0, 0, 0.4);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Loading Spinner inside Button */
+.spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+button.loading .btn-text {
+    visibility: hidden;
+}
+
+button.loading .spinner {
+    display: block;
+}
+
+/* --- Balls --- */
+.ball-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    cursor: default;
+}
+
+/* Animasi Hover pada Bola */
+.ball:hover {
+    transform: scale(1.2) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.ball span {
+    background: white;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: black;
+    z-index: 2;
+}
+
+/* Classes warna bola */
+.ball-red {
+    background: var(--ball-red);
+}
+
+.ball-blue {
+    background: var(--ball-blue);
+}
+
+.ball-green {
+    background: var(--ball-green);
+}
+
+.ball-purple {
+    background: var(--ball-purple);
+}
+
+.ball-gray {
+    background: radial-gradient(circle at 30% 30%, #dcdcdc, #777);
+}
+
+
+.accuracy-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.circular-chart {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.circular-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(227, 26, 53, 0.2);
+}
+
+.circular-chart::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: white;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.inner-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+}
+
+.big-score {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-red);
+}
+
+.small-total {
+    font-size: 1.2rem;
+    color: #888;
+    font-weight: 500;
+    margin-top: -5px;
+}
+
+.accuracy-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: gray;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.circle-number {
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* --- Messages --- */
+.error-msg {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.subtitle,
+a {
+    color: gray;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 0.5s;
+}
+
+/* Badges */
+.badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 550;
+    text-transform: uppercase;
+    color: white;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.badge-training {
+    background-color: #ff9800;
+}
+
+.draw-title {
+    text-align: center;
+    margin: 0;
+}
+
+/* Orange */
+.badge-testing {
+    background-color: #2196F3;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    color: gray;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Blue */
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
