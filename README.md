@@ -8,7 +8,6 @@ Aplikasi prediksi hasil lotere (HK Lottery) menggunakan algoritma Random Forest.
 
 ## Instalasi
 
-1.  **Ekstrak** folder proyek (jika dari zip).
 2.  **Buka Terminal** atau Command Prompt (CMD/PowerShell) dan arahkan ke direktori utama proyek (folder yang berisi `requirements.txt`).
 3.  **Instal library** yang dibutuhkan dengan perintah:
     ```bash
@@ -26,9 +25,9 @@ Aplikasi prediksi hasil lotere (HK Lottery) menggunakan algoritma Random Forest.
     ```
     Running on http://127.0.0.1:5000
     ```
-4.  Buka browser Anda dan akses alamat: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+4.  Buka browser dan akses alamat: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## Struktur Folde
+## Struktur Folder
 *   `app/`: Berisi kode utama aplikasi (`app.py`), konfigurasi, dan file model `.pkl` dan `.py`.
     *   **PENTING**: Pastikan file `lottery_model.pkl` dan `model_features.pkl` ada di folder ini agar aplikasi dapat melakukan prediksi.
 *   `data/`: Berisi dataset latih dan uji.
